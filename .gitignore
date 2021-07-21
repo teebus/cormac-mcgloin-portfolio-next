@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/studio/node_modules
+/studio/yarn.lock
 /.pnp
 .pnp.js
 
