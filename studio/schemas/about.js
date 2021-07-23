@@ -1,7 +1,8 @@
 export default {
-  name: 'page',
-  title: 'Page',
+  name: 'aboutMe',
+  title: 'About me',
   type: 'document',
+  // __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
   fields: [
     {
       name: 'title',
@@ -15,6 +16,14 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
+      },
+    },
+    {
+      name: 'aboutMeImage',
+      title: 'About me image',
+      type: 'image',
+      options: {
+        hotspot: true,
       },
     },
   ],

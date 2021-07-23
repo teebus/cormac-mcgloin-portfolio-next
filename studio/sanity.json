@@ -17,9 +17,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
@@ -28,8 +26,8 @@
       "path": "./schemas/schema"
     },
     {
-      "implements": "part:@sanity/dashboard/config",
-      "path": "src/dashboardConfig.js"
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure"
     }
   ]
 }

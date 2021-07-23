@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 import { groq } from 'next-sanity';
 import { usePreviewSubscription, urlFor, PortableText } from '../lib/sanity';
@@ -57,6 +58,67 @@ export default function Home({ homeData }: HomeProps) {
     },
   };
 
+  const IntroTextWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    /* grid-template-rows: repeat(4, 1fr); */
+    column-gap: var(--size-3);
+    margin-top: var(--size-10);
+  `;
+
+  const IntroTextItem = styled(motion.h1)`
+    font-size: clamp(3.75rem, 9vw, 7.5rem);
+    margin-bottom: 0;
+    text-transform: uppercase;
+    color: #e4dec6;
+    font-weight: 700;
+    line-height: calc(0.65 * var(--line-height-heading));
+  `;
+
+  const ImageWrapper = styled(motion.div)`
+    /* max-width: 600px; */
+  `;
+
+  const ImageStyle = styled.img`
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+    position: relative;
+  `;
+
+  const Projects = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--size-10);
+    margin-top: var(--size-10);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+  `;
+  const Project = styled.div`
+    display: flex;
+    gap: var(--size-1);
+    flex-flow: row wrap;
+    @media (min-width: 800px) {
+      flex-flow: column nowrap;
+    }
+    > * {
+      flex: 1 1 50%;
+      /* @media (min-width: 800px) {
+        width: 50%;
+      } */
+    }
+  `;
+  const ProjectInfoWrapper = styled(motion.div)`
+    display: flex;
+    align-items: center;
+  `;
+
+  const ProjectTitle = styled.h2`
+    font-size: var(--size-4);
+  `;
+
   return (
     <Layout>
       <Head>
@@ -67,63 +129,109 @@ export default function Home({ homeData }: HomeProps) {
 
       <main
         css={css`
-          margin-left: var(--nav-width);
+          /* margin-left: var(--nav-width); */
           min-height: 100vh;
         `}
       >
-        <motion.h1
-          exit='exit'
-          animate='messageShow'
-          initial='initial'
-          variants={variants}
-        >
-          {homeData.introText.introText}
-        </motion.h1>
-
-        {homeData.projects.map((project: any) => {
-          return (
-            <React.Fragment key={project.title}>
-              <motion.div
-                key={project.title}
-                exit='exit'
-                animate='show'
-                initial='initial'
-                variants={variants}
-              >
-                {project.title}
-              </motion.div>
-              <motion.div
-                key={project.projectHero.asset._ref}
-                css={css`
-                  width: 200px;
-                  height: 200px;
-                `}
-                exit='exit'
-                animate='imageShow'
-                initial='initial'
-                variants={variants}
-              >
+        <IntroTextWrapper>
+          <IntroTextItem
+            exit='exit'
+            animate='messageShow'
+            initial='initial'
+            variants={variants}
+            css={css`
+              grid-column: 1/-1;
+              @media (min-width: 600px) {
+                grid-column: 5/-1;
+              }
+            `}
+          >
+            Cormac
+          </IntroTextItem>
+          <IntroTextItem
+            exit='exit'
+            animate='messageShow'
+            initial='initial'
+            variants={variants}
+            css={css`
+              grid-column: 2/-1;
+              @media (min-width: 600px) {
+                grid-column: 7/-1;
+              }
+            `}
+          >
+            {/* {homeData.introText.introText} */}
+            McGloin
+          </IntroTextItem>
+          <IntroTextItem
+            exit='exit'
+            animate='messageShow'
+            initial='initial'
+            variants={variants}
+            css={css`
+              grid-column: 1/-1;
+              font-weight: 300;
+              @media (min-width: 600px) {
+                grid-column: 2/-1;
+              }
+            `}
+          >
+            Product
+          </IntroTextItem>
+          <IntroTextItem
+            exit='exit'
+            animate='messageShow'
+            initial='initial'
+            variants={variants}
+            css={css`
+              grid-column: 2/-1;
+              font-weight: 300;
+              @media (min-width: 600px) {
+                grid-column: 4/-1;
+              }
+            `}
+          >
+            Designer
+          </IntroTextItem>
+        </IntroTextWrapper>
+        <Projects>
+          {homeData.projects.map((project: any) => {
+            return (
+              <Project key={project.title}>
                 <Link
                   href={`/project/${project.slug.current}`}
+                  passHref
                   key={project.projectHero.asset._ref}
                   scroll={false}
                 >
                   <a key={project.projectHero.asset._ref}>
-                    <img
-                      css={css`
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                      `}
+                    <ImageWrapper
                       key={project.projectHero.asset._ref}
-                      src={`${urlFor(project.projectHeroImage).url()}`}
-                    />
+                      exit='exit'
+                      animate='imageShow'
+                      initial='initial'
+                      variants={variants}
+                    >
+                      <ImageStyle
+                        key={project.projectHero.asset._ref}
+                        src={`${urlFor(project.projectHeroImage).url()}`}
+                      />
+                    </ImageWrapper>
                   </a>
                 </Link>
-              </motion.div>
-            </React.Fragment>
-          );
-        })}
+                <ProjectInfoWrapper
+                  key={project.title}
+                  exit='exit'
+                  animate='messageShow'
+                  initial='initial'
+                  variants={variants}
+                >
+                  <ProjectTitle>{project.title}</ProjectTitle>
+                </ProjectInfoWrapper>
+              </Project>
+            );
+          })}
+        </Projects>
       </main>
     </Layout>
   );
@@ -139,6 +247,7 @@ export const getStaticProps: GetStaticProps = async () => {
 // }
 {'projects': *[_type == "project"]{
 title,
+subTitle,
 slug{current},
 projectHero,
 'projectHeroImage':projectHero.asset->url

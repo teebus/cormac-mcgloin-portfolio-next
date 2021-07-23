@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player';
 
 const ProjectContent = ({ projectContent }) => {
   const projectHeaderStyles = css`
-    font-size: var(--project-sub-title);
+    font-size: var(--size-5);
     color: var(--colour-heading);
   `;
 

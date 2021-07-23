@@ -31,6 +31,7 @@ const Project = ({ data }) => {
   const { project } = data;
   const {
     title,
+    subtitle,
     projectDescription,
     projectHero,
     projectRole,
@@ -76,6 +77,9 @@ const Project = ({ data }) => {
         exit={{
           opacity: 0,
         }}
+        css={css`
+          padding: 0 var(--size-2) 0 var(--size-1);
+        `}
       >
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -89,6 +93,7 @@ const Project = ({ data }) => {
         >
           <ProjectMetaData
             client={title}
+            subtitle={subtitle}
             description={projectDescription}
             hero={projectHero}
             role={projectRole}

@@ -3,7 +3,24 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { urlFor } from '../lib/sanity';
 
-const ProjectMeta = ({ client, description, role, hero }) => {
+const ProjectMeta = ({ client, subtitle, description, role, hero }) => {
+  const ProjectSubtitleWrapper = styled.div`
+    display: flex;
+    margin: var(--size-2) auto;
+    max-width: 1200px;
+    justify-content: flex-start;
+    @media (min-width: 800px) {
+      margin: var(--size-10) auto;
+    }
+  `;
+
+  const Subtitle = styled.h2`
+    /* font-size: var(--size-10); */
+    font-size: clamp(2.75rem, 9vw, 4rem);
+    font-weight: 300;
+    /* @media(min-width: 800px) */
+  `;
+
   const ProjectOverview = styled.div`
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -38,6 +55,9 @@ const ProjectMeta = ({ client, description, role, hero }) => {
 
   return (
     <>
+      <ProjectSubtitleWrapper>
+        <Subtitle>{subtitle}</Subtitle>
+      </ProjectSubtitleWrapper>
       <ProjectOverview>
         <MetaWrapper>
           <MetaContainer>

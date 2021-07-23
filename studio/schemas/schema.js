@@ -14,7 +14,7 @@ import rowTwoItems from './rowTwoItems';
 import video from './video';
 import projectSnippet from './projectSnippet';
 import project from './project';
-import page from './page';
+import aboutMe from './about';
 import homepage from './homepage';
 import photography from './photography';
 
@@ -32,7 +32,7 @@ export default createSchema({
     video,
     projectSnippet,
     project,
-    page,
+    aboutMe,
     author,
     homepage,
     photography,

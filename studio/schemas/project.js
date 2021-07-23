@@ -1,5 +1,3 @@
-import { object } from 'prop-types';
-
 export default {
   name: 'project',
   title: 'Project',
@@ -8,6 +6,11 @@ export default {
     {
       name: 'title',
       title: 'Title',
+      type: 'string',
+    },
+    {
+      name: 'subtitle',
+      title: 'Subtitle',
       type: 'string',
     },
     {

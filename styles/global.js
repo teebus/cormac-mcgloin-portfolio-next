@@ -642,8 +642,8 @@ const BaseStyles = () => (
         --colour-white: #ffffff;
         --colour-page-background: #041d1f;
         --colour-logo: #333333;
-        --colour-link-highlight: #12a295;
-        --colour-link-highlight-text: #ffffff;
+        --colour-link-highlight: #e8b808;
+        --colour-link-highlight-text: var(--colour-page-background);
         --colour-animated-cover: #111111;
 
         --micro-size-1: 0.25rem;
@@ -661,7 +661,10 @@ const BaseStyles = () => (
         --size-10: 5rem;
         --size-11: 10rem;
 
-        --nav-width: var(--size-10);
+        --nav-width: var(--size-9);
+        @media (min-width: 800px) {
+          --nav-width: var(--size-10);
+        }
 
         --line-height-body: 1.625;
         --line-height-heading: 1.25;
@@ -679,13 +682,13 @@ const BaseStyles = () => (
 
       --nav-title: var(--size-1);
 
-      .darkMode {
+      .lightMode {
         --colour-text: #cccccc;
         --colour-heading: #faf8f6;
         --colour-white: #000000;
         --colour-page-background: #222222;
         --colour-logo: #faf8f6;
-        --colour-link-highlight: #e8b808;
+        --colour-link-highlight: #12a295;
         --colour-link-highlight-text: #333333;
         --colour-animated-cover: #faf8f6;
       }

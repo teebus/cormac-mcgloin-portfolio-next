@@ -21,11 +21,17 @@ export default () =>
             .schemaType('photography')
             .documentId('photography')
         ),
+      S.listItem()
+        .title('About me')
+        .child(
+          S.document().id('aboutMe').schemaType('aboutMe').documentId('aboutMe')
+        ),
 
       // Add a visual divider (optional)
       S.divider(),
       // List out the rest of the document types, but filter out the config type
       ...S.documentTypeListItems().filter(
-        (listItem) => !['homepage', 'photography'].includes(listItem.getId())
+        (listItem) =>
+          !['homepage', 'photography', 'aboutMe'].includes(listItem.getId())
       ),
     ]);

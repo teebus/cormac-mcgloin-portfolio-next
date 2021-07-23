@@ -50,13 +50,21 @@ const Nav = ({ backgroundColour = 'var(--colour-page-background)' }) => {
       </Link>
 
       <NavStyled>
-        <NavItem>Projects</NavItem>
-        <Link href='/photography'>
+        <Link href='/' passHref scroll={false}>
+          <a>
+            <NavItem>Projects</NavItem>
+          </a>
+        </Link>
+        <Link href='/photography' passHref scroll={false}>
           <a>
             <NavItem>Photography</NavItem>
           </a>
         </Link>
-        <NavItem>Info</NavItem>
+        <Link href='/about-me' passHref scroll={false}>
+          <a>
+            <NavItem>About me</NavItem>
+          </a>
+        </Link>
       </NavStyled>
     </NavContainerStyled>
   );
