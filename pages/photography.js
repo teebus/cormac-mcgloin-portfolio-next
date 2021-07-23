@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import Head from 'next/head';
 import Layout from '../components/Layout';
 import urlBuilder from '@sanity/image-url';
 import Gallery from 'react-photo-gallery';
@@ -12,7 +13,7 @@ import { css } from '@emotion/react';
 
 const Photography = ({ data }) => {
   const { photography } = data;
-  const { galleryItems } = photography;
+  const { title, galleryItems } = photography;
 
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
@@ -49,6 +50,21 @@ const Photography = ({ data }) => {
 
   return (
     <Layout>
+      <Head>
+        <title>{title} - Cormac McGloin | Product Designer</title>
+        <meta
+          name='title'
+          key='title'
+          content='Cormac McGloin | Product Designer'
+        />
+        <meta
+          name='description'
+          content='Product designer based in London, helping businesses understand their customers and improve their products."'
+        />
+
+        <link rel='icon' href='/favicon.png' />
+      </Head>
+
       <div
         css={{
           // mixBlendMode: "difference",

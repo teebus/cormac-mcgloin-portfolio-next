@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { urlFor, PortableText } from '../../lib/sanity';
@@ -66,6 +67,21 @@ const Project = ({ data }) => {
 
   return (
     <Layout>
+      <Head>
+        <title>{title} - Cormac McGloin | Product Designer</title>
+        <meta
+          name='title'
+          key='title'
+          content='Cormac McGloin | Product Designer'
+        />
+        <meta
+          name='description'
+          content='Product designer based in London, helping businesses understand their customers and improve their products."'
+        />
+
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{
