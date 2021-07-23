@@ -62,7 +62,7 @@ const Photography = ({ data }) => {
           content='Product designer based in London, helping businesses understand their customers and improve their products."'
         />
 
-        <link rel='icon' href='/favicon.png' />
+        <link rel='icon' type='image/png' href='/favicon.png' />
       </Head>
 
       <div
