@@ -7,6 +7,8 @@ const NavContainerStyled = styled.div`
   height: 100%;
   left: 0;
   top: 0;
+  bottom: 0;
+  right: 0;
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
@@ -19,6 +21,7 @@ const NavStyled = styled.nav`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: auto;
 `;
 
 const NavItem = styled.h3`

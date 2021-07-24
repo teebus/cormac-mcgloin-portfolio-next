@@ -59,20 +59,22 @@ export default function Home({ homeData }: HomeProps) {
   };
 
   const IntroTextWrapper = styled.div`
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    /* display: grid;
+    grid-template-columns: repeat(12, 1fr); */
     /* grid-template-rows: repeat(4, 1fr); */
-    column-gap: var(--size-3);
-    margin-top: var(--size-10);
+    /* column-gap: var(--size-3); */
+    margin: var(--size-10) auto 0;
+    max-width: 1200px;
   `;
 
-  const IntroTextItem = styled(motion.h1)`
-    font-size: clamp(3.75rem, 9vw, 7.5rem);
+  const IntroTextItem = styled(motion.span)`
+    font-size: clamp(3rem, 11vw, 5.6rem);
     margin-bottom: 0;
     text-transform: uppercase;
     color: #e4dec6;
     font-weight: 700;
     line-height: calc(0.65 * var(--line-height-heading));
+    display: inline-block;
   `;
 
   const ImageWrapper = styled(motion.div)`
@@ -143,65 +145,73 @@ export default function Home({ homeData }: HomeProps) {
         `}
       >
         <IntroTextWrapper>
-          <IntroTextItem
-            exit='exit'
-            animate='messageShow'
-            initial='initial'
-            variants={variants}
-            css={css`
-              grid-column: 1/-1;
-              @media (min-width: 600px) {
-                grid-column: 5/-1;
-              }
-            `}
-          >
-            Cormac
-          </IntroTextItem>
-          <IntroTextItem
-            exit='exit'
-            animate='messageShow'
-            initial='initial'
-            variants={variants}
-            css={css`
-              grid-column: 2/-1;
-              @media (min-width: 600px) {
-                grid-column: 7/-1;
-              }
-            `}
-          >
-            {/* {homeData.introText.introText} */}
-            McGloin
-          </IntroTextItem>
-          <IntroTextItem
-            exit='exit'
-            animate='messageShow'
-            initial='initial'
-            variants={variants}
-            css={css`
-              grid-column: 1/-1;
-              font-weight: 300;
-              @media (min-width: 600px) {
-                grid-column: 2/-1;
-              }
-            `}
-          >
-            Product
-          </IntroTextItem>
-          <IntroTextItem
-            exit='exit'
-            animate='messageShow'
-            initial='initial'
-            variants={variants}
-            css={css`
-              grid-column: 2/-1;
-              font-weight: 300;
-              @media (min-width: 600px) {
-                grid-column: 4/-1;
-              }
-            `}
-          >
-            Designer
-          </IntroTextItem>
+          <div>
+            <IntroTextItem
+              exit='exit'
+              animate='messageShow'
+              initial='initial'
+              variants={variants}
+              css={css`
+                margin-left: 0vw;
+                @media (min-width: 600px) {
+                  margin-left: 28vw;
+                }
+              `}
+            >
+              Cormac
+            </IntroTextItem>
+          </div>
+          <div>
+            <IntroTextItem
+              exit='exit'
+              animate='messageShow'
+              initial='initial'
+              variants={variants}
+              css={css`
+                margin-left: 20vw;
+                @media (min-width: 600px) {
+                  margin-left: 38vw;
+                }
+              `}
+            >
+              {/* {homeData.introText.introText} */}
+              McGloin
+            </IntroTextItem>
+          </div>
+          <div>
+            <IntroTextItem
+              exit='exit'
+              animate='messageShow'
+              initial='initial'
+              variants={variants}
+              css={css`
+                font-weight: 300;
+                margin-left: 0vw;
+                @media (min-width: 600px) {
+                  margin-left: 10vw;
+                }
+              `}
+            >
+              Product
+            </IntroTextItem>
+          </div>
+          <div>
+            <IntroTextItem
+              exit='exit'
+              animate='messageShow'
+              initial='initial'
+              variants={variants}
+              css={css`
+                font-weight: 300;
+                margin-left: 20vw;
+                @media (min-width: 600px) {
+                  margin-left: 20vw;
+                }
+              `}
+            >
+              Designer
+            </IntroTextItem>
+          </div>
         </IntroTextWrapper>
         <Projects>
           {homeData.projects.map((project: any) => {
