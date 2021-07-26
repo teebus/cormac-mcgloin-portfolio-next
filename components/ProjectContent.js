@@ -5,6 +5,10 @@ import { urlFor, PortableText } from '../lib/sanity';
 import ReactPlayer from 'react-player';
 
 const ProjectContent = ({ projectContent }) => {
+  const ProjectContentWrapper = styled.div`
+    margin-top: var(--size-8);
+  `;
+
   const projectHeaderStyles = css`
     font-size: var(--size-5);
     color: var(--colour-heading);
@@ -12,7 +16,7 @@ const ProjectContent = ({ projectContent }) => {
 
   const projectImageStyle = css`
     margin: var(--size-4) var(--size-1);
-    max-width: 800px;
+    max-width: 1200px;
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -257,7 +261,7 @@ const ProjectContent = ({ projectContent }) => {
   };
 
   return (
-    <>
+    <ProjectContentWrapper>
       <PortableText
         blocks={projectContent}
         serializers={{
@@ -269,7 +273,7 @@ const ProjectContent = ({ projectContent }) => {
           },
         }}
       />
-    </>
+    </ProjectContentWrapper>
   );
 };
 

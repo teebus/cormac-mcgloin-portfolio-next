@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { urlFor, PortableText } from '../../lib/sanity';
+import { usePreviewSubscription, urlFor, PortableText } from '../../lib/sanity';
 import { getClient } from '../../lib/sanity.server';
 import Layout from '../../components/Layout';
 import ProjectMetaData from '../../components/ProjectMetaData';
@@ -11,13 +11,29 @@ import ProjectContent from '../../components/ProjectContent';
 import { projectQuery, projectSlugsQuery } from '../../lib/queries';
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 
-const Project = ({ data }) => {
+const Project = ({ data, preview }) => {
   const { pathname, search } = useRouter();
+
+  const slug = data?.project?.slug;
+
+  const { data: project } = usePreviewSubscription(projectQuery, {
+    params: { slug },
+    initialData: data,
+    enabled: preview && slug,
+  });
+
+  const {
+    title,
+    subtitle,
+    projectDescription,
+    projectHero,
+    projectRole,
+    projectContent,
+  } = project?.project;
 
   useEffect(
     () =>
       // <-- Now we return the useEffect teardown effect, which will be fired only after the path/search change for the first time
-
       // trying to use new API - https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo
       window.scroll({
         top: 0,
@@ -28,16 +44,6 @@ const Project = ({ data }) => {
   );
 
   const router = useRouter();
-
-  const { project } = data;
-  const {
-    title,
-    subtitle,
-    projectDescription,
-    projectHero,
-    projectRole,
-    projectContent,
-  } = project;
 
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -68,7 +74,7 @@ const Project = ({ data }) => {
   return (
     <Layout>
       <Head>
-        <title>{title} - Cormac McGloin | Product Designer</title>
+        <title>{'title'} - Cormac McGloin | Product Designer</title>
         <meta
           name='title'
           key='title'
@@ -130,9 +136,9 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, preview = false }) {
   const { slug } = params;
-  const project = await getClient().fetch(projectQuery, { slug });
+  const project = await getClient(preview).fetch(projectQuery, { slug });
 
   if (!project) {
     return {
@@ -141,7 +147,7 @@ export async function getStaticProps({ params }) {
   }
 
   return {
-    props: { data: { project } },
+    props: { data: { project }, preview },
   };
 }
 

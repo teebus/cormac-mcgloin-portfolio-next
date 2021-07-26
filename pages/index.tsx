@@ -264,7 +264,7 @@ export const getStaticProps: GetStaticProps = async () => {
 // title,
 // slug{current}
 // }
-{'projects': *[_type == "project"]{
+{'projects': *[_type == "project"] | order(priority asc){
 title,
 subTitle,
 slug{current},

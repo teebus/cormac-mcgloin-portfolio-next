@@ -57,6 +57,12 @@ export default {
       type: 'reference',
       to: { type: 'author' },
     },
+    {
+      name: 'priority',
+      title: 'Priority',
+      type: 'number',
+      validation: (Rule) => Rule.min(0).integer().positive(),
+    },
   ],
 
   //TODO play with previews

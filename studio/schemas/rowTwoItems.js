@@ -30,4 +30,11 @@ export default {
       validation: (Rule) => Rule.length(2),
     },
   ],
+
+  preview: {
+    select: {
+      title: 'imageDescription',
+      media: 'rowImage',
+    },
+  },
 };
