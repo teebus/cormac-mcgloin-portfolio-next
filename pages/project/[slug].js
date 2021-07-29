@@ -12,14 +12,14 @@ import { projectQuery, projectSlugsQuery } from '../../lib/queries';
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 
 const Project = ({ data, preview }) => {
-  const { pathname, search } = useRouter();
+  const router = useRouter();
 
   const slug = data?.project?.slug;
 
   const { data: project } = usePreviewSubscription(projectQuery, {
-    params: { slug },
-    initialData: data,
-    enabled: preview && slug,
+    params: { slug: data.project?.slug },
+    initialData: data.project,
+    enabled: preview && data.project?.slug,
   });
 
   const {
@@ -29,7 +29,9 @@ const Project = ({ data, preview }) => {
     projectHero,
     projectRole,
     projectContent,
-  } = project?.project;
+  } = data?.project;
+
+  // console.log(project);
 
   useEffect(
     () =>
@@ -43,10 +45,11 @@ const Project = ({ data, preview }) => {
     []
   );
 
-  const router = useRouter();
-
   if (router.isFallback) {
     return <div>Loading...</div>;
+  }
+  if (!router.isFallback && !slug) {
+    return '<Error>';
   }
 
   const heroStyle = css`
@@ -74,7 +77,7 @@ const Project = ({ data, preview }) => {
   return (
     <Layout>
       <Head>
-        <title>{'title'} - Cormac McGloin | Product Designer</title>
+        <title>{title} - Cormac McGloin | Product Designer</title>
         <meta
           name='title'
           key='title'
@@ -131,23 +134,22 @@ export async function getStaticPaths() {
   const paths = await getClient().fetch(projectSlugsQuery);
 
   return {
-    paths,
-    fallback: false,
+    paths: paths,
+    fallback: true,
   };
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const { slug } = params;
-  const project = await getClient(preview).fetch(projectQuery, { slug });
+  const project = await getClient().fetch(projectQuery, { slug: params.slug });
 
-  if (!project) {
+  if (!project.slug?.current) {
     return {
       notFound: true,
     };
   }
 
   return {
-    props: { data: { project }, preview },
+    props: { preview, data: { project } },
   };
 }
 

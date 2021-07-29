@@ -36,17 +36,17 @@ const ProjectContent = ({ projectContent }) => {
   `;
 
   const projectContentText = css`
-    margin: 0 var(--size-1);
+    margin: 0 var(--size-1) var(--size-4);
     max-width: 800px;
     @media (min-width: 700px) {
-      margin: 0 auto;
+      margin: 0 auto var(--size-4);
     }
   `;
 
   const rowTwoItemsStyle = css`
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 1rem;
+    gap: 8rem;
     max-width: 1200px;
     margin: 0 auto;
     align-items: flex-start;
@@ -58,7 +58,7 @@ const ProjectContent = ({ projectContent }) => {
   const rowTwoItemsImageStyle = css`
     width: 100%;
     @media (min-width: 800px) {
-      width: auto;
+      /* width: auto; */
     }
   `;
 
@@ -69,6 +69,7 @@ const ProjectContent = ({ projectContent }) => {
       <div css={rowTwoItemsStyle}>
         {node.itemArray.map((item) => {
           const key = item._key;
+
           return (
             <React.Fragment key={item._key}>
               {item._type === 'imageItem' ? (
@@ -133,47 +134,25 @@ const ProjectContent = ({ projectContent }) => {
     );
   };
 
-  const imageWidthCheck = ({ node }) => {
-    const imageWidth = node.metadata.dimensions.width;
+  const galleryItemRenderer = ({ node }) => {
     const imageKey = node._key;
 
     return (
       <div css={projectImageStyle}>
-        {imageWidth > 800 ? (
-          <img
-            sizes='(min-width: 800px) 1600px, 100vw'
-            srcSet={[
-              urlFor(node.galleryImage.asset).auto('format').width(3200).url() +
-                ` 3200w`,
-              urlFor(node.galleryImage.asset).auto('format').width(1600).url() +
-                ` 1600w`,
-              urlFor(node.galleryImage.asset).auto('format').width(800).url() +
-                ` 800w`,
-            ]}
-            src={urlFor(node.galleryImage.asset)
-              .auto('format')
-              .width(800)
-              .url()}
-            alt={node.imageDescription}
-            key={imageKey}
-          />
-        ) : (
-          <img
-            sizes='(min-width: 800px) 400px, 100vw'
-            srcSet={[
-              urlFor(node.galleryImage.asset).auto('format').width(1600).url() +
-                ` 1600w`,
-              urlFor(node.galleryImage.asset).auto('format').width(800).url() +
-                ` 800w`,
-            ]}
-            src={urlFor(node.galleryImage.asset)
-              .auto('format')
-              .width(800)
-              .url()}
-            alt={node.imageDescription}
-            key={imageKey}
-          />
-        )}
+        <img
+          sizes='(min-width: 800px) 1600px, 100vw'
+          srcSet={[
+            urlFor(node.galleryImage.asset).auto('format').width(3200).url() +
+              ` 3200w`,
+            urlFor(node.galleryImage.asset).auto('format').width(1600).url() +
+              ` 1600w`,
+            urlFor(node.galleryImage.asset).auto('format').width(800).url() +
+              ` 800w`,
+          ]}
+          src={urlFor(node.galleryImage.asset).auto('format').width(800).url()}
+          alt={node.imageDescription}
+          key={imageKey}
+        />
       </div>
     );
   };
@@ -266,8 +245,8 @@ const ProjectContent = ({ projectContent }) => {
         blocks={projectContent}
         serializers={{
           types: {
-            galleryItem: (props) => imageWidthCheck(props),
-            rowTwoItems: rowTwoItemsRenderer,
+            galleryItem: (props) => galleryItemRenderer(props),
+            rowTwoItems: (props) => rowTwoItemsRenderer(props),
             block: blockRenderer,
             video: videoRenderer,
           },
