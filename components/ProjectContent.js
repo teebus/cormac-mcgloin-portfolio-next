@@ -43,19 +43,20 @@ const ProjectContent = ({ projectContent }) => {
     }
   `;
 
-  const rowTwoItemsStyle = css`
+  const rowItemsStyle = css`
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 8rem;
+    gap: 4rem;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto var(--size-10);
     align-items: flex-start;
-    @media (min-width: 800px) {
-      grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    @media (min-width: 700px) {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
   `;
 
-  const rowTwoItemsImageStyle = css`
+  const rowItemsImageStyle = css`
     width: 100%;
     @media (min-width: 800px) {
       /* width: auto; */
@@ -64,9 +65,9 @@ const ProjectContent = ({ projectContent }) => {
 
   const ReactPlayerStyles = styled(ReactPlayer)``;
 
-  const rowTwoItemsRenderer = ({ node }) => {
+  const rowItemsRenderer = ({ node }) => {
     return (
-      <div css={rowTwoItemsStyle}>
+      <div css={rowItemsStyle}>
         {node.itemArray.map((item) => {
           const key = item._key;
 
@@ -95,7 +96,7 @@ const ProjectContent = ({ projectContent }) => {
                       .width(800)
                       .url()}
                     alt={item.rowImage.imageDescription}
-                    css={rowTwoItemsImageStyle}
+                    css={rowItemsImageStyle}
                     key={key}
                   />
                 </div>
@@ -246,7 +247,7 @@ const ProjectContent = ({ projectContent }) => {
         serializers={{
           types: {
             galleryItem: (props) => galleryItemRenderer(props),
-            rowTwoItems: (props) => rowTwoItemsRenderer(props),
+            rowItems: (props) => rowItemsRenderer(props),
             block: blockRenderer,
             video: videoRenderer,
           },

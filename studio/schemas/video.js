@@ -14,4 +14,9 @@ export default {
       type: 'string',
     },
   ],
+  preview: {
+    select: {
+      title: 'title',
+    },
+  },
 };

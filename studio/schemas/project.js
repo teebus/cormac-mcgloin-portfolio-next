@@ -48,7 +48,7 @@ export default {
         { type: 'block' },
         { type: 'galleryItem' },
         { type: 'video' },
-        { type: 'rowTwoItems' },
+        { type: 'rowItems' },
       ],
     },
     {

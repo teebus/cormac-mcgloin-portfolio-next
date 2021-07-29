@@ -10,7 +10,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 // import post from './post'
 import author from './author';
 import galleryItem from './galleryItem';
-import rowTwoItems from './rowTwoItems';
+import rowItems from './rowItems';
 import video from './video';
 import projectSnippet from './projectSnippet';
 import project from './project';
@@ -28,7 +28,7 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     galleryItem,
-    rowTwoItems,
+    rowItems,
     video,
     projectSnippet,
     project,
