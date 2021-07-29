@@ -16,12 +16,13 @@ const Project = ({ data, preview }) => {
 
   const slug = data?.project?.slug;
 
-  const { data: project } = usePreviewSubscription(projectQuery, {
-    params: { slug: data.project?.slug },
-    initialData: data.project,
-    enabled: preview && data.project?.slug,
-  });
+  // const { data: project } = usePreviewSubscription(projectQuery, {
+  //   params: { slug: data.project?.slug },
+  //   initialData: data.project,
+  //   enabled: preview && data.project?.slug,
+  // });
 
+  const { project } = data;
   const {
     title,
     subtitle,
@@ -29,7 +30,7 @@ const Project = ({ data, preview }) => {
     projectHero,
     projectRole,
     projectContent,
-  } = data?.project;
+  } = project;
 
   // console.log(project);
 
@@ -135,12 +136,13 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: true,
+    fallback: false,
   };
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const project = await getClient().fetch(projectQuery, { slug: params.slug });
+  const { slug } = params;
+  const project = await getClient().fetch(projectQuery, { slug });
 
   if (!project.slug?.current) {
     return {
@@ -149,7 +151,7 @@ export async function getStaticProps({ params, preview = false }) {
   }
 
   return {
-    props: { preview, data: { project } },
+    props: { data: { project } },
   };
 }
 
