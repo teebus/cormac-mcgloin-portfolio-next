@@ -22,6 +22,9 @@ const ProjectContent = ({ projectContent }) => {
     text-align: center;
     display: flex;
     justify-content: center;
+    & img {
+      width: 100%;
+    }
 
     @media (min-width: 700px) {
       margin: var(--size-4) var(--size-8);
