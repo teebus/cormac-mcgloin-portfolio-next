@@ -4,6 +4,7 @@ const ContainerStyled = styled.div`
   background-color: ${(props) => props.backgroundColour};
   min-height: 100vh;
   margin-left: var(--nav-width);
+  overflow: auto;
 `;
 
 const Layout = ({

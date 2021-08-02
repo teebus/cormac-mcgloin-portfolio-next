@@ -105,6 +105,7 @@ const Project = ({ data, preview }) => {
         }}
         css={css`
           padding: 0 var(--size-2) 0 var(--size-1);
+          margin-bottom: var(--size-11);
         `}
       >
         <motion.div
