@@ -132,7 +132,7 @@ export default function Home({ homeData }: HomeProps) {
         />
         <meta
           name='description'
-          content='Product designer based in London, helping businesses understand their customers and improve their products."'
+          content='Product designer based in London, helping businesses understand their customers and improve their products.'
         />
 
         <link rel='icon' type='image/png' href='/favicon.png' />
