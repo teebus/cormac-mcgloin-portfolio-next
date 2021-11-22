@@ -211,8 +211,8 @@ export default function AboutMe({ aboutData }: AboutProps) {
             exit='exit'
           >
             <motion.div css={textLine} className='textLine' variants={item}>
-              Hey, I’m Cormac, a <strong>product designer</strong> currently
-              based in&nbsp;London.
+              <span>Hey,</span> I’m Cormac, a <strong>product designer</strong>{' '}
+              currently based in&nbsp;Amsterdam.
             </motion.div>
             <motion.div css={textLine} className='textLine' variants={item}>
               I help companies <strong>understand their customers</strong> and{' '}
