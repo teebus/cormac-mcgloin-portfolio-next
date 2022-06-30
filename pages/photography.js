@@ -9,6 +9,7 @@ import { getClient } from '../lib/sanity.server';
 import { photographyQuery } from '../lib/queries';
 import { AnimatePresence, motion } from 'framer-motion';
 import { css } from '@emotion/react';
+
 // import "react-medium-image-zoom/dist/styles.css"
 
 const Photography = ({ data }) => {
