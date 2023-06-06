@@ -111,8 +111,9 @@ const Photography = ({ data }) => {
 
 export async function getStaticProps() {
   const photography = await getClient().fetch(photographyQuery);
+  console.log(photography);
 
-  if (!photography) {
+  if (!photography?.length === 0) {
     return {
       notFound: true,
     };

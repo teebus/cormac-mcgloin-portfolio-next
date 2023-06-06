@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://cormacmcgloin.com
+
+# Sitemaps
+Sitemap: https://cormacmcgloin.com/sitemap.xml
